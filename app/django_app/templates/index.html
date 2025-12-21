@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ project_name }}</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+        }
+        th {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>{{ project_name }}</h1>
+<p><i style="color: blue;">{{ student }}</i></p>
+
+<h2>Гості</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Прізвище</th><th>Імʼя</th><th>По батькові</th><th>Місто</th>
+    </tr>
+    {% for g in guests %}
+    <tr>
+        <td>{{ g.guest_id }}</td>
+        <td>{{ g.last_name }}</td>
+        <td>{{ g.first_name }}</td>
+        <td>{{ g.patronymic }}</td>
+        <td>{{ g.city }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Номери</h2>
+<table>
+    <tr>
+        <th>№</th><th>К-сть кімнат</th><th>Поверх</th>
+        <th>TV</th><th>Холодильник</th>
+        <th>Місць</th><th>Категорія</th><th>Ціна/доба</th>
+    </tr>
+    {% for r in rooms %}
+    <tr>
+        <td>{{ r.room_number }}</td>
+        <td>{{ r.num_rooms }}</td>
+        <td>{{ r.floor }}</td>
+        <td>{{ r.tv }}</td>
+        <td>{{ r.fridge }}</td>
+        <td>{{ r.num_places }}</td>
+        <td>{{ r.category }}</td>
+        <td>{{ r.price_per_day }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Реєстрації</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Гість</th><th>Дата прибуття</th><th>Днів</th><th>Номер</th>
+    </tr>
+    {% for reg in registrations %}
+    <tr>
+        <td>{{ reg.registration_id }}</td>
+        <td>{{ reg.guest.last_name }} {{ reg.guest.first_name }}</td>
+        <td>{{ reg.arrival_date }}</td>
+        <td>{{ reg.num_days }}</td>
+        <td>{{ reg.room.room_number }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
