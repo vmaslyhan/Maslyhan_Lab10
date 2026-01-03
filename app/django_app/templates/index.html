@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ project_name }}</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-bottom: 40px; }
+        th, td { border: 1px solid black; padding: 6px; }
+        th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+<h1>{{ project_name }}</h1>
+<p><i style="color: blue;">{{ student }}</i></p>
+
+<h2>Постачальники</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Компанія</th><th>Контактна особа</th><th>Телефон</th><th>Розрахунковий рахунок</th>
+    </tr>
+    {% for s in suppliers %}
+    <tr>
+        <td>{{ s.supplier_id }}</td>
+        <td>{{ s.company_name }}</td>
+        <td>{{ s.contact_person }}</td>
+        <td>{{ s.phone }}</td>
+        <td>{{ s.bank_account }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Матеріали</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Назва</th><th>Ціна</th>
+    </tr>
+    {% for m in materials %}
+    <tr>
+        <td>{{ m.material_id }}</td>
+        <td>{{ m.material_name }}</td>
+        <td>{{ m.price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Поставки</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Дата</th><th>Постачальник</th><th>Матеріал</th><th>Днів</th><th>К-сть</th>
+    </tr>
+    {% for sup in supplies %}
+    <tr>
+        <td>{{ sup.supply_id }}</td>
+        <td>{{ sup.supply_date }}</td>
+        <td>{{ sup.supplier.company_name }}</td>
+        <td>{{ sup.material.material_name }}</td>
+        <td>{{ sup.delivery_days }}</td>
+        <td>{{ sup.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
